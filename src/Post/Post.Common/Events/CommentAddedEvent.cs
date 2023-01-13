@@ -10,6 +10,6 @@ public class CommentAddedEvent : BaseEvent
 
     public Guid CommentId { get; set; }
     public string Author { get; set; }
-    public string Message { get; set; }
+    public string Comment { get; set; }
     public DateTime CommentDate { get; set; }
 }

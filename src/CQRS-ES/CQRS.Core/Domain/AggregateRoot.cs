@@ -32,7 +32,7 @@ public abstract class AggregateRoot
 
     private void ApplyChange(BaseEvent @event, bool isNew)
     {
-        var method = this.GetType().GetMethod("Appply", new[] { @event.GetType() });
+        var method = GetType().GetMethod("Appply", new[] { @event.GetType() });
         if (method == null)
         {
             throw new ArgumentNullException(nameof(method), $"Apply method was not found in aggregate for {@event.GetType().Name}.");
