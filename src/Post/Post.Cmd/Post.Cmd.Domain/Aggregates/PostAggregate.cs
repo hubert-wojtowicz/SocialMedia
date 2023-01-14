@@ -135,7 +135,7 @@ public class PostAggregate : AggregateRoot
         _comments[@event.CommentId] = Tuple.Create(@event.Comment, @event.Author);
     }
 
-    public void RemoveComment(Guid commentId, string username)
+    public void DeleteComment(Guid commentId, string username)
     {
         if (!_active)
         {
