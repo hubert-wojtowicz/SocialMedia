@@ -50,6 +50,6 @@ public class EventStore : IEventStore
         if (eventStream == null || !eventStream.Any())
             throw new AggregateNotFoundException("Incorrect post id provided!");
 
-        return eventStream.Select(x => x.EventData).ToList();
+        return eventStream.OrderBy(x => x.Version).Select(x => x.EventData).ToList();
     }
 }
