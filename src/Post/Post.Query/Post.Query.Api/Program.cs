@@ -1,6 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using Post.Query.Infrastructure.DataAccess;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+Action<DbContextOptionsBuilder> configureDbContext = (o =>
+    o.UseLazyLoadingProxies()
+    .UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+// Create database and tables on starup
+builder.Services.BuildServiceProvider()
+    .GetRequiredService<DatabaseContext>()
+    .Database.EnsureCreated();
+
+
+builder.Services.AddDbContext<DatabaseContext>(configureDbContext
+builder.Services.AddSingleton(new DatabaseContextFactory(configureDbContext));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
