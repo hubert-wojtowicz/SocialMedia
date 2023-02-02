@@ -26,9 +26,9 @@ public class PostRepository : IPostRepository
         context.Posts.Update(post);
     }
 
-    public async Task DeleteAsync(PostEntity post)
+    public async Task DeleteAsync(Guid postId)
     {
-        var existingPost = await GetAsync(post.PostId);
+        var existingPost = await GetAsync(postId);
         if (existingPost != null) return;
 
         await using var context = _databaseContextFactory.CreateDbContext();

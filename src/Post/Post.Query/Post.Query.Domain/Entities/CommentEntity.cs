@@ -17,6 +17,8 @@ public class CommentEntity
 
     public bool Edited { get; set; }
 
+    public Guid PostId { get; set; }
+
     [System.Text.Json.Serialization.JsonIgnore]
     public virtual PostEntity Post { get; set; }
 }
